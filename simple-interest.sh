@@ -1,26 +1,15 @@
 #!/bin/bash
-# This script calculates simple interest given principal, annual rate of interest and time period in years.
-# Do not use this in production. Sample purpose only.
+# Script para calcular juros simples
+# Fórmula: J = P * r * t
 
-# Author: Upkar Lidder (IBM)
-# Addtional Authors:
-# <your Github username>
+echo "=== Calculadora de Juros Simples ==="
+read -p "Digite o valor do Principal (Capital inicial): " p
+read -p "Digite a taxa de juros anual (em %): " r
+read -p "Digite o período de tempo (em anos): " t
 
-# Input:
-# p, principal amount
-# t, time period in years
-# r, annual rate of interest
+interest=$(echo "scale=2; ($p * $r * $t) / 100" | bc)
+total=$(echo "scale=2; $p + $interest" | bc)
 
-# Output:
-# simple interest = p*t*r
-
-echo "Enter the principal:"
-read p
-echo "Enter rate of interest per year:"
-read r
-echo "Enter time period in years:"
-read t
-
-s=$(expr $p \* $t \* $r / 100)
-echo "The simple interest is: "
-echo $s
+echo "-----------------------------------"
+echo "O valor dos juros simples é: $interest"
+echo "O montante total (Principal + Juros) é: $total"
